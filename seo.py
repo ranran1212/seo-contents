@@ -28,7 +28,7 @@ with st.form("my_form"):
     top_p_value = st.slider("top_pの値", min_value=0.0, max_value=1.0, value=0.2, step=0.1)
     st.caption("top_pは出力結果の多様性を制御する値で、0に近いほど一貫性が高く、1に近いほど多様性が増します")
     
-    top_p_value = st.slider("出力結果の数", min_value=1, max_value=10, value=3, step=1)
+    result_num = st.slider("出力結果の数", min_value=1, max_value=10, value=3, step=1)
     st.caption("出力する構成案の数を指定します")
     
     
@@ -92,7 +92,7 @@ if submit_button and api_key and articles:
         article_description3=articles[2].split("：")[1]
     )
     
-    for i in range(3):  
+    for i in range(result_num):  
         # ChatGPT APIを呼び出し
         response = openai.ChatCompletion.create(
             model="gpt-4",
